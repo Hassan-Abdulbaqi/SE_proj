@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftProject API - Service Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">SoftProject API</h1>
+                <div class="nav-actions">
+                    <span id="user-info" class="user-info"></span>
+                    <button id="logout-btn" class="btn btn-secondary" style="display: none;">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container main-content">
+            <!-- Auth Section -->
+            <section id="auth-section" class="section">
+                <div class="card-grid">
+                    <!-- Sign Up Card -->
+                    <div class="card">
+                        <h2>Create Account</h2>
+                        <form id="signup-form">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input type="tel" name="mobile_number" placeholder="0791234567" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input type="password" name="password_confirm" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email (Optional)</label>
+                                <input type="email" name="email">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </form>
+                    </div>
+
+                    <!-- Sign In Card -->
+                    <div class="card">
+                        <h2>Sign In</h2>
+                        <form id="signin-form">
+                            <div class="form-group">
+                                <label>Mobile Number</label>
+                                <input type="tel" name="mobile_number" placeholder="0791234567" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section" style="display: none;">
+                <!-- Services List -->
+                <div class="card">
+                    <h2>Available Services</h2>
+                    <div id="services-list" class="services-grid"></div>
+                </div>
+
+                <!-- Cost Calculator -->
+                <div class="card">
+                    <h2>Cost Calculator</h2>
+                    <form id="calculator-form" class="calculator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Select Service</label>
+                                <select name="service_id" id="calc-service-select" required>
+                                    <option value="">-- Choose Service --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" name="quantity" step="0.01" min="0.01" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Calculate Cost</button>
+                        </div>
+                    </form>
+                    <div id="calculator-result" class="result-box"></div>
+                </div>
+
+                <!-- Checkout Form -->
+                <div class="card">
+                    <h2>Create Order (Checkout)</h2>
+                    <form id="checkout-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Select Service</label>
+                                <select name="service_id" id="checkout-service-select" required>
+                                    <option value="">-- Choose Service --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" name="quantity" step="0.01" min="0.01" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" name="location" placeholder="Baghdad, Iraq" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Method</label>
+                                <select name="payment_method" required>
+                                    <option value="cash">Cash</option>
+                                    <option value="card">Card</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Delivery Cost (IQD)</label>
+                                <input type="number" name="delivery_cost" step="0.01" min="0" value="5000" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Estimated Delivery (minutes)</label>
+                                <input type="number" name="estimated_delivery_time" min="1" value="60" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Notes (Optional)</label>
+                            <textarea name="notes" rows="3" placeholder="Any special instructions..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Place Order</button>
+                    </form>
+                    <div id="checkout-result" class="result-box"></div>
+                </div>
+
+                <!-- Orders List -->
+                <div class="card">
+                    <h2>My Orders</h2>
+                    <button id="refresh-orders-btn" class="btn btn-secondary mb-3">Refresh Orders</button>
+                    <div id="orders-list"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
