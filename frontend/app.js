@@ -1,5 +1,7 @@
 // API Configuration
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+// For local development: 'http://127.0.0.1:8000/api'
+// For production: 'https://sh3ewit.pythonanywhere.com/api'
+const API_BASE_URL = 'https://sh3ewit.pythonanywhere.com/api';
 
 // State Management
 const state = {

@@ -12,7 +12,8 @@ class UserManager(BaseUserManager):
         if not mobile_number:
             raise ValueError('Users must have a mobile number')
         
-        email = extra_fields.get('email', '')
+        # Extract email from extra_fields to avoid duplicate keyword argument
+        email = extra_fields.pop('email', '')
         if email:
             email = self.normalize_email(email)
         

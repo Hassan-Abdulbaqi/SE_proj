@@ -5,7 +5,9 @@
 A comprehensive REST API for utility services (Electricity, Water, Gas) ordering system with support for user authentication, service management, cost calculation, and order tracking.
 
 **Version**: 1.0  
-**Base URL**: `http://127.0.0.1:8000/api/`  
+**Live URL**: `https://sh3ewit.pythonanywhere.com/`  
+**API Base URL**: `https://sh3ewit.pythonanywhere.com/api/`  
+**Local Dev URL**: `http://127.0.0.1:8000/api/`  
 **Currency**: Iraqi Dinar (IQD) 🇮🇶  
 **Authentication**: Session-based (cookies)
 
@@ -13,7 +15,14 @@ A comprehensive REST API for utility services (Electricity, Water, Gas) ordering
 
 ## 🚀 Quick Start
 
-### Access Points
+### 🌐 Live Deployment
+
+- **Frontend Web App**: `https://sh3ewit.pythonanywhere.com/`
+- **API Endpoints**: `https://sh3ewit.pythonanywhere.com/api/`
+- **Django Admin**: `https://sh3ewit.pythonanywhere.com/admin/`
+- **Services API**: `https://sh3ewit.pythonanywhere.com/api/services/`
+
+### 💻 Local Development
 
 - **Frontend Web App**: `http://127.0.0.1:8000/`
 - **API Endpoints**: `http://127.0.0.1:8000/api/`
@@ -762,8 +771,21 @@ total_cost = service_cost + delivery_cost
 
 ## 🧪 Testing with cURL
 
+**Note**: Replace `https://sh3ewit.pythonanywhere.com` with `http://127.0.0.1:8000` for local testing.
+
 ### Sign Up
 ```bash
+# Production
+curl -X POST https://sh3ewit.pythonanywhere.com/api/auth/signup/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "testuser",
+    "mobile_number": "0771234567",
+    "password": "test123",
+    "password_confirm": "test123"
+  }'
+
+# Local
 curl -X POST http://127.0.0.1:8000/api/auth/signup/ \
   -H "Content-Type: application/json" \
   -d '{
@@ -776,7 +798,8 @@ curl -X POST http://127.0.0.1:8000/api/auth/signup/ \
 
 ### Sign In
 ```bash
-curl -X POST http://127.0.0.1:8000/api/auth/signin/ \
+# Production
+curl -X POST https://sh3ewit.pythonanywhere.com/api/auth/signin/ \
   -H "Content-Type: application/json" \
   -c cookies.txt \
   -d '{
@@ -787,17 +810,26 @@ curl -X POST http://127.0.0.1:8000/api/auth/signin/ \
 
 ### List Services
 ```bash
+# Production
+curl https://sh3ewit.pythonanywhere.com/api/services/
+
+# Local
 curl http://127.0.0.1:8000/api/services/
 ```
 
 ### Calculate Cost
 ```bash
+# Production
+curl "https://sh3ewit.pythonanywhere.com/api/services/calculate_cost/?service_id=1&quantity=100"
+
+# Local
 curl "http://127.0.0.1:8000/api/services/calculate_cost/?service_id=1&quantity=100"
 ```
 
 ### Create Order (requires authentication)
 ```bash
-curl -X POST http://127.0.0.1:8000/api/orders/checkout/ \
+# Production
+curl -X POST https://sh3ewit.pythonanywhere.com/api/orders/checkout/ \
   -H "Content-Type: application/json" \
   -b cookies.txt \
   -d '{
@@ -812,7 +844,8 @@ curl -X POST http://127.0.0.1:8000/api/orders/checkout/ \
 
 ### List Orders (requires authentication)
 ```bash
-curl http://127.0.0.1:8000/api/orders/ \
+# Production
+curl https://sh3ewit.pythonanywhere.com/api/orders/ \
   -b cookies.txt
 ```
 
@@ -823,7 +856,8 @@ curl http://127.0.0.1:8000/api/orders/ \
 A modern, responsive web application is available at the root URL.
 
 ### Access
-Visit: `http://127.0.0.1:8000/`
+- **Live**: `https://sh3ewit.pythonanywhere.com/`
+- **Local**: `http://127.0.0.1:8000/`
 
 ### Features
 - 🔐 User authentication (Sign Up / Sign In)
@@ -878,6 +912,8 @@ This is a school/educational project. For issues:
 **API Version**: 1.0  
 **Django Version**: 4.2+  
 **DRF Version**: 3.14+
+
+**Live Deployment**: [https://sh3ewit.pythonanywhere.com/](https://sh3ewit.pythonanywhere.com/)
 
 ---
 
